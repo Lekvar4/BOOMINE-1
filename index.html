@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BOOMINE — Wear the Mood</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text">BOOMINE</div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">BOOMINE</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#new-arrivals">New Arrivals</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-icon" id="search-btn" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="nav-icon" id="wishlist-btn" aria-label="Wishlist">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="badge" id="wishlist-count">0</span>
+    </button>
+    <button class="nav-icon cart-btn" id="cart-toggle" aria-label="Cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="badge" id="cart-count">0</span>
+    </button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <ul>
+    <li><a href="#home" class="mobile-link">Home</a></li>
+    <li><a href="#collections" class="mobile-link">Collections</a></li>
+    <li><a href="#new-arrivals" class="mobile-link">New Arrivals</a></li>
+    <li><a href="#about" class="mobile-link">About</a></li>
+    <li><a href="#contact" class="mobile-link">Contact</a></li>
+  </ul>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="search-overlay">
+  <button class="search-close" id="search-close">✕</button>
+  <div class="search-content">
+    <p class="search-label">SEARCH</p>
+    <input type="text" id="search-input" placeholder="Type to search…" autocomplete="off"/>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>YOUR CART</h3>
+    <button id="cart-close">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-subtotal">₦0</span>
+    </div>
+    <p class="cart-note">Shipping & taxes calculated at checkout</p>
+    <button class="btn-checkout" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
+    <button class="btn-continue" onclick="closeCart()">CONTINUE SHOPPING</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg">
+    <div class="hero-grain"></div>
+    <div class="hero-shape s1"></div>
+    <div class="hero-shape s2"></div>
+    <div class="hero-shape s3"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-tag reveal">SS 2025 COLLECTION</p>
+    <h1 class="hero-title reveal">
+      <span>WEAR</span>
+      <em>the</em>
+      <span>MOOD</span>
+    </h1>
+    <p class="hero-sub reveal">Crafted for those who move with intention.<br>Streetwear meets soul.</p>
+    <div class="hero-cta reveal">
+      <a href="#collections" class="btn-primary">SHOP NOW</a>
+      <a href="#about" class="btn-ghost">OUR STORY</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+  <div class="hero-badge">
+    <div class="badge-ring">
+      <svg viewBox="0 0 120 120" class="badge-svg">
+        <path id="badge-circle" d="M 60,60 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" fill="none"/>
+        <text><textPath href="#badge-circle">BOOMINE CLOTHING ✦ EST. 2024 ✦ </textPath></text>
+      </svg>
+      <span class="badge-center">B</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>BOOMINE</span><span>✦</span>
+    <span>WEAR THE MOOD</span><span>✦</span>
+    <span>STREETWEAR</span><span>✦</span>
+    <span>PREMIUM QUALITY</span><span>✦</span>
+    <span>NEW COLLECTION</span><span>✦</span>
+    <span>BOOMINE</span><span>✦</span>
+    <span>WEAR THE MOOD</span><span>✦</span>
+    <span>STREETWEAR</span><span>✦</span>
+    <span>PREMIUM QUALITY</span><span>✦</span>
+    <span>NEW COLLECTION</span><span>✦</span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="section collections-section">
+  <div class="section-header">
+    <p class="section-tag">SHOP BY CATEGORY</p>
+    <h2 class="section-title">Collections</h2>
+  </div>
+  <div class="collections-grid">
+    <div class="collection-card big" data-cat="men">
+      <div class="col-img" style="background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)">
+        <div class="col-overlay"></div>
+        <div class="col-text">
+          <p>EXPLORE</p>
+          <h3>MEN'S</h3>
+        </div>
+      </div>
+    </div>
+    <div class="collection-card" data-cat="women">
+      <div class="col-img" style="background: linear-gradient(135deg,#2d1b33,#4a1942,#6d2b5c)">
+        <div class="col-overlay"></div>
+        <div class="col-text">
+          <p>EXPLORE</p>
+          <h3>WOMEN'S</h3>
+        </div>
+      </div>
+    </div>
+    <div class="collection-card" data-cat="accessories">
+      <div class="col-img" style="background: linear-gradient(135deg,#1a2a1a,#2d4a1e,#3d6b2a)">
+        <div class="col-overlay"></div>
+        <div class="col-text">
+          <p>EXPLORE</p>
+          <h3>ACCESSORIES</h3>
+        </div>
+      </div>
+    </div>
+    <div class="collection-card" data-cat="streetwear">
+      <div class="col-img" style="background: linear-gradient(135deg,#2a1a0e,#4a2e0e,#6b421a)">
+        <div class="col-overlay"></div>
+        <div class="col-text">
+          <p>EXPLORE</p>
+          <h3>STREETWEAR</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section id="new-arrivals" class="section products-section">
+  <div class="section-header">
+    <p class="section-tag">JUST DROPPED</p>
+    <h2 class="section-title">New Arrivals</h2>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="men">Men</button>
+      <button class="filter-tab" data-filter="women">Women</button>
+      <button class="filter-tab" data-filter="accessories">Accessories</button>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+  <div class="load-more-wrap">
+    <button class="btn-load-more" id="load-more">LOAD MORE</button>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section class="promo-banner">
+  <div class="promo-content">
+    <p class="promo-tag">LIMITED TIME</p>
+    <h2>GET 20% OFF<br><em>Your First Order</em></h2>
+    <p class="promo-sub">Use code <strong>BOOMINE20</strong> at checkout</p>
+    <a href="#new-arrivals" class="btn-primary light">SHOP THE DROP</a>
+  </div>
+  <div class="promo-shapes">
+    <div class="ps ps1"></div>
+    <div class="ps ps2"></div>
+    <div class="ps ps3"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-img-wrap">
+        <div class="about-img-placeholder">
+          <span>BRAND<br>IMAGE</span>
+          <p class="placeholder-note">Replace with brand photo</p>
+        </div>
+        <div class="about-accent-box"></div>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <h3>500+</h3>
+          <p>Products</p>
+        </div>
+        <div class="stat">
+          <h3>10K+</h3>
+          <p>Customers</p>
+        </div>
+        <div class="stat">
+          <h3>50+</h3>
+          <p>Styles</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="section-tag">OUR STORY</p>
+      <h2 class="section-title">Born from the<br><em>streets, made for</em><br>the culture.</h2>
+      <p>Boomine was founded on the belief that clothing is more than fabric — it's a statement, a mood, an identity. We create pieces that speak before you do.</p>
+      <p>From the Lagos streets to your wardrobe, every stitch carries intention. Premium materials. Authentic designs. Real culture.</p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div>
+            <h4>Quality First</h4>
+            <p>Only premium materials make the cut.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div>
+            <h4>Culture-Driven</h4>
+            <p>Rooted in authentic street culture.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div>
+            <h4>Limited Drops</h4>
+            <p>Exclusive pieces. Never mass-produced.</p>
+          </div>
+        </div>
+      </div>
+      <a href="#new-arrivals" class="btn-primary">SHOP THE COLLECTION</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section">
+  <div class="section-header">
+    <p class="section-tag">REVIEWS</p>
+    <h2 class="section-title">What People Say</h2>
+  </div>
+  <div class="testimonials-track" id="testimonials-track">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Boomine pieces are unmatched. The quality is exactly what I expected — premium, comfortable and the design is just fire."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AK</div>
+        <div>
+          <strong>Adebayo K.</strong>
+          <span>Lagos, Nigeria</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"I ordered the streetwear hoodie and it literally changed my whole fit. Everyone keeps asking where I got it from. 10/10."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">FO</div>
+        <div>
+          <strong>Fatima O.</strong>
+          <span>Abuja, Nigeria</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Fast delivery, excellent packaging, and the clothes are exactly as described. Will be ordering again very soon!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">CM</div>
+        <div>
+          <strong>Chidi M.</strong>
+          <span>Port Harcourt</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Love the aesthetic. Boomine has something different from all the other brands. Real culture in every piece."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">ZA</div>
+        <div>
+          <strong>Zainab A.</strong>
+          <span>Kano, Nigeria</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-dots" id="testimonial-dots"></div>
+</section>
+
+<!-- INSTAGRAM SECTION -->
+<section class="section instagram-section">
+  <div class="section-header">
+    <p class="section-tag">@BOOMINE</p>
+    <h2 class="section-title">Follow the Vibe</h2>
+  </div>
+  <div class="instagram-grid">
+    <div class="insta-post">
+      <div class="insta-placeholder"><span>POST 1</span></div>
+      <div class="insta-hover"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </div>
+    <div class="insta-post">
+      <div class="insta-placeholder"><span>POST 2</span></div>
+      <div class="insta-hover"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </div>
+    <div class="insta-post">
+      <div class="insta-placeholder"><span>POST 3</span></div>
+      <div class="insta-hover"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </div>
+    <div class="insta-post">
+      <div class="insta-placeholder"><span>POST 4</span></div>
+      <div class="insta-hover"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </div>
+    <div class="insta-post">
+      <div class="insta-placeholder"><span>POST 5</span></div>
+      <div class="insta-hover"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </div>
+    <div class="insta-post">
+      <div class="insta-placeholder"><span>POST 6</span></div>
+      <div class="insta-hover"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-content">
+    <p class="section-tag">STAY CONNECTED</p>
+    <h2>Get Early Access<br><em>to New Drops</em></h2>
+    <p>Join the Boomine inner circle. First to know, first to shop.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="your@email.com" id="newsletter-email"/>
+      <button onclick="subscribeNewsletter()">SUBSCRIBE</button>
+    </div>
+    <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact-section">
+  <div class="section-header">
+    <p class="section-tag">GET IN TOUCH</p>
+    <h2 class="section-title">Contact Us</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>123 Placeholder Street, Lagos, Nigeria</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <h4>Email</h4>
+          <p><a href="mailto:hello@boomine.com">hello@boomine.com</a></p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p><a href="tel:+2340000000000">+234 000 000 0000</a></p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⏰</div>
+        <div>
+          <h4>Hours</h4>
+          <p>Mon–Fri: 9AM – 6PM WAT</p>
+        </div>
+      </div>
+      <div class="contact-socials">
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">Twitter / X</a>
+        <a href="#" class="social-link">TikTok</a>
+        <a href="#" class="social-link">WhatsApp</a>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="submitContact(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John" required/>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Doe" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="john@email.com" required/>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>Order Inquiry</option>
+          <option>Product Question</option>
+          <option>Return/Exchange</option>
+          <option>Wholesale</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Your message…" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary full">SEND MESSAGE</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">BOOMINE</div>
+      <p>Wear the Mood.<br>Born from the streets, made for the culture.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#new-arrivals">New Arrivals</a></li>
+        <li><a href="#collections">Men's</a></li>
+        <li><a href="#collections">Women's</a></li>
+        <li><a href="#collections">Accessories</a></li>
+        <li><a href="#collections">Streetwear</a></li>
+        <li><a href="#collections">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns & Exchanges</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Wholesale</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Boomine. All rights reserved.</p>
+    <div class="payment-badges">
+      <span class="pay-badge">Visa</span>
+      <span class="pay-badge">Mastercard</span>
+      <span class="pay-badge">Paystack</span>
+      <span class="pay-badge">Flutterwave</span>
+      <span class="pay-badge">Bank Transfer</span>
+    </div>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal-overlay"></div>
+<div class="product-modal" id="product-modal">
+  <button class="modal-close" id="modal-close">✕</button>
+  <div class="modal-content">
+    <div class="modal-img" id="modal-img"></div>
+    <div class="modal-details">
+      <p class="modal-tag" id="modal-tag"></p>
+      <h2 id="modal-name"></h2>
+      <div class="modal-price" id="modal-price"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-sizes">
+        <p>SELECT SIZE</p>
+        <div class="size-grid" id="modal-sizes"></div>
+      </div>
+      <div class="modal-colors">
+        <p>COLOR</p>
+        <div class="color-grid" id="modal-colors"></div>
+      </div>
+      <div class="modal-qty">
+        <p>QUANTITY</p>
+        <div class="qty-control">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="modal-qty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary full" onclick="addToCartFromModal()">ADD TO CART</button>
+        <button class="btn-wishlist" onclick="addToWishlist()">♡ WISHLIST</button>
+      </div>
+      <div class="modal-meta">
+        <details><summary>Size Guide</summary><p>Please refer to our size chart. If between sizes, size up.</p></details>
+        <details><summary>Shipping Info</summary><p>Free shipping on orders above ₦25,000. Delivery within 3–7 business days.</p></details>
+        <details><summary>Returns</summary><p>Free returns within 14 days. Items must be unworn and in original packaging.</p></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkout-overlay"></div>
+<div class="checkout-modal" id="checkout-modal">
+  <button class="modal-close" id="checkout-close" onclick="closeCheckout()">✕</button>
+  <div class="checkout-header">
+    <div class="checkout-logo">BOOMINE</div>
+    <div class="checkout-steps">
+      <div class="step active" id="step1-btn">1. Info</div>
+      <div class="step-sep">›</div>
+      <div class="step" id="step2-btn">2. Shipping</div>
+      <div class="step-sep">›</div>
+      <div class="step" id="step3-btn">3. Payment</div>
+    </div>
+  </div>
+
+  <!-- Step 1: Customer Info -->
+  <div class="checkout-step" id="checkout-step1">
+    <h3>Contact Information</h3>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="co-email" placeholder="your@email.com"/>
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="co-phone" placeholder="+234 000 000 0000"/>
+    </div>
+    <h3 style="margin-top:1.5rem">Shipping Address</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="co-fname" placeholder="John"/>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="co-lname" placeholder="Doe"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Street Address</label>
+      <input type="text" id="co-addr" placeholder="123 Main Street"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" id="co-city" placeholder="Lagos"/>
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <select id="co-state">
+          <option>Lagos</option><option>Abuja</option><option>Rivers</option>
+          <option>Kano</option><option>Oyo</option><option>Ogun</option>
+          <option>Anambra</option><option>Enugu</option><option>Delta</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <input type="text" value="Nigeria" readonly/>
+    </div>
+    <button class="btn-primary full" onclick="goToStep(2)">CONTINUE TO SHIPPING</button>
+  </div>
+
+  <!-- Step 2: Shipping -->
+  <div class="checkout-step hidden" id="checkout-step2">
+    <h3>Shipping Method</h3>
+    <div class="shipping-options">
+      <label class="shipping-option selected" id="ship-std">
+        <input type="radio" name="shipping" value="standard" checked/>
+        <div class="ship-info">
+          <div>
+            <strong>Standard Delivery</strong>
+            <p>3–7 business days</p>
+          </div>
+          <span class="ship-price" id="std-price">₦2,500</span>
+        </div>
+      </label>
+      <label class="shipping-option" id="ship-exp">
+        <input type="radio" name="shipping" value="express"/>
+        <div class="ship-info">
+          <div>
+            <strong>Express Delivery</strong>
+            <p>1–2 business days</p>
+          </div>
+          <span class="ship-price">₦5,000</span>
+        </div>
+      </label>
+      <label class="shipping-option" id="ship-free">
+        <input type="radio" name="shipping" value="free" disabled/>
+        <div class="ship-info">
+          <div>
+            <strong>Free Shipping</strong>
+            <p>Orders above ₦25,000</p>
+          </div>
+          <span class="ship-price free">FREE</span>
+        </div>
+      </label>
+    </div>
+    <div class="coupon-section">
+      <h3>Promo Code</h3>
+      <div class="coupon-input">
+        <input type="text" id="coupon-code" placeholder="Enter promo code (e.g. BOOMINE20)"/>
+        <button onclick="applyCoupon()">APPLY</button>
+      </div>
+      <p id="coupon-msg"></p>
+    </div>
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div id="checkout-items-list"></div>
+      <div class="summary-line"><span>Subtotal</span><span id="co-subtotal">₦0</span></div>
+      <div class="summary-line"><span>Shipping</span><span id="co-shipping">₦2,500</span></div>
+      <div class="summary-line discount hidden" id="discount-line"><span>Discount</span><span id="co-discount">-₦0</span></div>
+      <div class="summary-total"><span>Total</span><span id="co-total">₦0</span></div>
+    </div>
+    <div class="checkout-nav">
+      <button class="btn-ghost" onclick="goToStep(1)">← BACK</button>
+      <button class="btn-primary" onclick="goToStep(3)">CONTINUE TO PAYMENT →</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Payment -->
+  <div class="checkout-step hidden" id="checkout-step3">
+    <h3>Payment Method</h3>
+    <div class="payment-methods">
+      <div class="payment-method active" id="pm-card" onclick="selectPayment('card')">
+        <div class="pm-icon">💳</div>
+        <div>
+          <strong>Debit / Credit Card</strong>
+          <p>Visa, Mastercard</p>
+        </div>
+      </div>
+      <div class="payment-method" id="pm-paystack" onclick="selectPayment('paystack')">
+        <div class="pm-icon">🟢</div>
+        <div>
+          <strong>Paystack</strong>
+          <p>Pay securely via Paystack</p>
+        </div>
+      </div>
+      <div class="payment-method" id="pm-flutter" onclick="selectPayment('flutterwave')">
+        <div class="pm-icon">🟡</div>
+        <div>
+          <strong>Flutterwave</strong>
+          <p>Pay via Flutterwave</p>
+        </div>
+      </div>
+      <div class="payment-method" id="pm-transfer" onclick="selectPayment('transfer')">
+        <div class="pm-icon">🏦</div>
+        <div>
+          <strong>Bank Transfer</strong>
+          <p>Direct bank transfer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Form -->
+    <div id="card-form" class="payment-form">
+      <div class="form-group">
+        <label>Cardholder Name</label>
+        <input type="text" placeholder="John Doe"/>
+      </div>
+      <div class="form-group">
+        <label>Card Number</label>
+        <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" id="card-num"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Expiry Date</label>
+          <input type="text" placeholder="MM/YY" maxlength="5"/>
+        </div>
+        <div class="form-group">
+          <label>CVV</label>
+          <input type="text" placeholder="000" maxlength="3"/>
+        </div>
+      </div>
+      <div class="secure-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        256-bit SSL Encrypted. Your payment is secure.
+      </div>
+    </div>
+
+    <!-- Paystack Form -->
+    <div id="paystack-form" class="payment-form hidden">
+      <div class="gateway-info">
+        <div class="gateway-logo">PAYSTACK</div>
+        <p>You will be redirected to Paystack's secure payment page to complete your purchase.</p>
+        <p class="gateway-note">⚙️ Replace the public key in script.js with your actual Paystack public key to activate.</p>
+      </div>
+    </div>
+
+    <!-- Flutterwave Form -->
+    <div id="flutterwave-form" class="payment-form hidden">
+      <div class="gateway-info">
+        <div class="gateway-logo">FLUTTERWAVE</div>
+        <p>You will be redirected to Flutterwave's secure payment page to complete your purchase.</p>
+        <p class="gateway-note">⚙️ Replace the public key in script.js with your actual Flutterwave public key to activate.</p>
+      </div>
+    </div>
+
+    <!-- Bank Transfer Form -->
+    <div id="transfer-form" class="payment-form hidden">
+      <div class="bank-details">
+        <h4>Transfer to:</h4>
+        <div class="bank-info">
+          <div class="bank-row"><span>Bank Name</span><strong>Placeholder Bank</strong></div>
+          <div class="bank-row"><span>Account Name</span><strong>Boomine Clothing Ltd</strong></div>
+          <div class="bank-row"><span>Account Number</span><strong>0000000000</strong></div>
+        </div>
+        <p class="bank-note">Please use your ORDER ID as payment reference. Orders are confirmed after payment verification (within 2 hours).</p>
+      </div>
+    </div>
+
+    <div class="final-total">
+      <span>Total to Pay:</span>
+      <strong id="final-total-amount">₦0</strong>
+    </div>
+    <div class="checkout-nav">
+      <button class="btn-ghost" onclick="goToStep(2)">← BACK</button>
+      <button class="btn-primary" onclick="placeOrder()">PLACE ORDER →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
